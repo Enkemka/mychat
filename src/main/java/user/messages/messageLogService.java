@@ -25,10 +25,12 @@ public class messageLogService {
 
     // get all ,show all message logs with that users id,
 public List<messageLog> showUsersChats(String userId){
-        return repo.findAllWithUserId(userId);
+        return repo.findByUsersIdInChatContaining(userId);
 
         //repostory has query, if user ID is in the list of ud ids in a mesage log show it
     //it means they are a memeber of that chat
+
+    //to load all chat history, loading all chats with user ID present
 
 }
 
@@ -55,7 +57,7 @@ return repo.save(msg);
 
 //patch update  message log with data from new message object
 
-public messageLog addMessageToChat(message msg){
+//public messageLog addMessageToChat(message msg,message logID){
         //expects to take in message object
     //make constroctor in messgae object for taking in user ID and message and assigns date
    //user gives message object
@@ -65,7 +67,13 @@ public messageLog addMessageToChat(message msg){
     //find log by log id,
     //log id will be send by person making request after they opened log
     //then update the logs chat history and user who sent it
-}
+
+    //go into right message log by id
+    //taking all the info from message object and sending it to messagelog in the msd section in database
+    //resembles sending a normal text
+
+
+//}
 
 
 

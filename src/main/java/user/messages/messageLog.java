@@ -18,6 +18,10 @@ public class messageLog {
         this.MessageHistory = MessageHistory;
     }
 
+    public messageLog
+
+
+
     public messageLog(String userId) {
         this.UsersIdInChat =List.of(userId);
     }
