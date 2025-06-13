@@ -1,5 +1,8 @@
 package user.messages;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +13,14 @@ import java.util.List;
 public class messageLogController {
 
     private final messageLogService MessageLogService;
+
+
+    @GetMapping("/test")
+    public String test() {
+        return "Controller is reachable!";
+    }
+
+
 
     @Autowired
     public messageLogController(messageLogService MessageLogService){
@@ -22,13 +33,31 @@ public class messageLogController {
 return MessageLogService.showUsersChats(userId);
     }
 
+    /*@GetMapping("/{userId}")
+    public List<messageLog> showHistory(@PathVariable String userId) {
+        return List.of();  // empty list, to isolate if error is in DB call
+    }*/
 
 
-    @PostMapping ("/{newChat}")
-    public messageLog newMessageLog(@RequestBody String userId){
+    @PostMapping ("/{userId}")
+    public messageLog newMessageLog(@PathVariable String userId){
         return MessageLogService.makeUserChat(userId);
     }
 
-    @PutMapping
+
+
+    @PatchMapping("/{ChatId}")
+    public messageLog addMessaage(@PathVariable String ChatId ,@RequestBody message newMsg){
+        return MessageLogService.addMessage(ChatId,newMsg);
+    }
+
+    @DeleteMapping("/{ChatId}")
+    public void deleteChat(String ChatId){
+        MessageLogService.deleteMessageLog( ChatId);
+    }
+
+
+
+
 
 }

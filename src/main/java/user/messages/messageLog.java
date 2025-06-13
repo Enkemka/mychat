@@ -10,43 +10,55 @@ public class messageLog {
     @Id
     private String ChatId;
     private List<String> UsersIdInChat;
-    private List<String> MessageHistory;
+    private List<message> MessageHistory;
 
-    public messageLog(String ChatId, List<String> UsersIdInChat, List<String> MessageHistory) {
+    public messageLog(String ChatId, List<String> UsersIdInChat, List<message> MessageHistory) {
         this.ChatId = ChatId;
         this.UsersIdInChat = UsersIdInChat;
         this.MessageHistory = MessageHistory;
     }
 
-    public messageLog
+    public messageLog addNewMessage(message New){
+
+         this.MessageHistory.add(New);
+         return this;
+    }
+
 
 
 
     public messageLog(String userId) {
+
         this.UsersIdInChat =List.of(userId);
     }
 
     public String getChatId() {
+
         return ChatId;
     }
 
     public void setChatId(String chatId) {
+
         ChatId = chatId;
     }
 
     public List<String> getUsersIdInChat() {
+
         return UsersIdInChat;
     }
 
     public void setUsersIdInChat(List<String> usersIdInChat) {
+
         UsersIdInChat = usersIdInChat;
     }
 
-    public List<String> getMessageHistory() {
+    public List<message> getMessageHistory() {
+
         return MessageHistory;
     }
 
-    public void setMessageHistory(List<String> messageHistory) {
+    public void setMessageHistory(List<message> messageHistory) {
+
         MessageHistory = messageHistory;
     }
 

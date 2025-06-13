@@ -1,14 +1,16 @@
 package user.messages;
 
 public class message {
+    private String messageId;
 private String userId;
 private String message;
-private String date;
 
-public message(String userId, String message, String date) {
+
+public message(String messageId, String userId, String message) {
+    this.messageId = messageId;
     this.userId = userId;
     this.message = message;
-    this.date = date;
+
 }
 
 
