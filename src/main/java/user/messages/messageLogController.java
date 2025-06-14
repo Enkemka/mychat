@@ -28,7 +28,7 @@ public class messageLogController {
     }
 
     @GetMapping("/{userId}")
-    public List<messageLog> showHistory(@PathVariable String userId){
+    public List<MessageLog> showHistory(@PathVariable String userId){
 
 return MessageLogService.showUsersChats(userId);
     }
@@ -39,7 +39,7 @@ return MessageLogService.showUsersChats(userId);
     }*/
 
 
-    @PostMapping ("/{userId}")
+    /*@PostMapping ("/post/{userId}")
     public messageLog newMessageLog(@PathVariable String userId){
         return MessageLogService.makeUserChat(userId);
     }
@@ -54,7 +54,7 @@ return MessageLogService.showUsersChats(userId);
     @DeleteMapping("/{ChatId}")
     public void deleteChat(String ChatId){
         MessageLogService.deleteMessageLog( ChatId);
-    }
+    }*/
 
 
 
