@@ -32,29 +32,36 @@ public class messageLogController {
 
 return MessageLogService.showUsersChats(userId);
     }
-
-    /*@GetMapping("/{userId}")
-    public List<messageLog> showHistory(@PathVariable String userId) {
-        return List.of();  // empty list, to isolate if error is in DB call
-    }*/
+    //showing list of chats with user in it
 
 
-    /*@PostMapping ("/post/{userId}")
-    public messageLog newMessageLog(@PathVariable String userId){
+
+    @PostMapping ("/post/{userId}")
+    public MessageLog newMessageLog(@PathVariable String userId){
         return MessageLogService.makeUserChat(userId);
     }
 
 
 
     @PatchMapping("/{ChatId}")
-    public messageLog addMessaage(@PathVariable String ChatId ,@RequestBody message newMsg){
+    public MessageLog addMessaage(@PathVariable String ChatId ,@RequestBody Message newMsg){
         return MessageLogService.addMessage(ChatId,newMsg);
     }
+
+    //delete message (patch)
+
+    //edut message
+
+
+
+    //
+
+
 
     @DeleteMapping("/{ChatId}")
     public void deleteChat(String ChatId){
         MessageLogService.deleteMessageLog( ChatId);
-    }*/
+    }
 
 
 

@@ -48,22 +48,27 @@ public MessageLog makeUserChat(String userId){
 
 public MessageLog addMessage(String id , Message newMsg){
     Optional<MessageLog> byChatId = repo.findById(id);
+    if(byChatId.isPresent()){
+        MessageLog msgLog = byChatId.get();
+
+        msgLog.addNewMessage(newMsg);
+        //go into message log and add new meesage object
+        return repo.save(msgLog);
+    }
         return null;
-//go into right message log by id
-    //taking all the info from message object and sending it to messagelog in the msd section in database
-    //resembles sending a normal text
+
 }
 
 
 
 
+//edit
 
 
-/*
-public messageLog deleteMessage(String messageId){
-        repo.deleteMessageByID(messageId);
+public void deleteMessage(String messageId){
+        repo.deleteMessageById(messageId);
     }
-*/
+
 
     public void deleteMessageLog(String ChatId){
         repo.deleteById(ChatId);
