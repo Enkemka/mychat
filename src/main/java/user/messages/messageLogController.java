@@ -1,5 +1,7 @@
 package user.messages;
 
+import com.mongodb.client.result.UpdateResult;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,14 +45,48 @@ return MessageLogService.showUsersChats(userId);
 
 
 
-    @PatchMapping("/{ChatId}")
-    public MessageLog addMessaage(@PathVariable String ChatId ,@RequestBody Message newMsg){
-        return MessageLogService.addMessage(ChatId,newMsg);
+
+    //front end will genrate message
+    //front end will get message values from token
+    @PatchMapping("/chats/{ChatId}/messages")
+    public ResponseEntity<?> addMessaage(@PathVariable String ChatId , @RequestBody Message newMsg){
+
+UpdateResult result = MessageLogService.addMessage(ChatId, newMsg);
+ if(result.getModifiedCount()>0){
+     System.out.println("sucess");
+     return ResponseEntity.ok(result);
+ }
+        System.out.println("fail");
+ return ResponseEntity.notFound().build();
+
     }
 
-    //delete message (patch)
 
-    //edut message
+    @PatchMapping("/chats/{ChatId}/message{messageId}")
+    public ResponseEntity<?> editMessaage(@PathVariable String ChatId ,@PathVariable String messageId, @RequestBody String newContentString){
+
+        UpdateResult result = MessageLogService.editMessage(ChatId,messageId, newContentString);
+        if(result.getModifiedCount()>0){
+            System.out.println("sucess");
+            return ResponseEntity.ok(result);
+        }
+        System.out.println("fail");
+        return ResponseEntity.notFound().build();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

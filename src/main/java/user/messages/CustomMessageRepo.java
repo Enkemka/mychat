@@ -1,6 +1,9 @@
 package user.messages;
 
+import com.mongodb.client.result.UpdateResult;
+
 public interface CustomMessageRepo {
-    void editMessage(String messageId, String newContentString);
-    void deleteMessage(String messageId);
+    UpdateResult editMessage(String messageLogId,String messageId, String newContentString);
+    UpdateResult deleteMessage(String messageLogId,String messageId);
+    UpdateResult addMessage(String messageLogId , Message newContentString);
 }

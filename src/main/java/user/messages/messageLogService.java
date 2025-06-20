@@ -1,6 +1,7 @@
 package user.messages;
 
 
+import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,16 +47,8 @@ public MessageLog makeUserChat(String userId){
 }
 
 
-public MessageLog addMessage(String id , Message newMsg){
-    Optional<MessageLog> byChatId = repo.findById(id);
-    if(byChatId.isPresent()){
-        MessageLog msgLog = byChatId.get();
-
-        msgLog.addNewMessage(newMsg);
-        //go into message log and add new meesage object
-        return repo.save(msgLog);
-    }
-        return null;
+public UpdateResult addMessage(String messageLogId , Message newMsg){
+    return repo.addMessage(messageLogId,newMsg);
 
 }
 
@@ -63,10 +56,15 @@ public MessageLog addMessage(String id , Message newMsg){
 
 
 //edit
+public UpdateResult editMessage(String messageLogId,String messageId, String newContentString){
+    return repo.editMessage(messageId,messageId,newContentString);
+}
 
 
-public void deleteMessage(String messageId){
-        repo.deleteMessageById(messageId);
+
+
+public UpdateResult deleteMessage(String messageLogId,String messageId){
+      return  repo.deleteMessage(messageLogId,messageId);
     }
 
 
